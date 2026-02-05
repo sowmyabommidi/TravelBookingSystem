@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking System</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --seagreen: #2eccb8;
+            --darkgreen: #1fa798;
+            --white: #ffffff;
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21') center/cover no-repeat;
+            height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-shadow: 2px 2px 10px black;
+        }
+
+        .navbar {
+            background-color: var(--seagreen) !important;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: var(--white) !important;
+            font-weight: 600;
+        }
+
+        /* Trip card styling */
+        .trip-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            background: linear-gradient(145deg, #e0f7f3, #ffffff);
+        }
+
+        .trip-card img {
+            height: 220px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .trip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            background: linear-gradient(145deg, #2eccb8, #1fa798);
+            color: #fff;
+        }
+
+        .trip-card:hover h5,
+        .trip-card:hover p,
+        .trip-card:hover .fw-bold {
+            color: #fff;
+        }
+
+        .trip-card .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .trip-card .btn {
+            background-color: var(--darkgreen);
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .trip-card .btn:hover {
+            background-color: var(--seagreen);
+            transform: scale(1.05);
+        }
+
+        .trip-card h5 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .trip-card p {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .trip-card .fw-bold {
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: var(--darkgreen);
+        }
+
+        .footer-links a {
+            color: white;
+            display: block;
+            margin-bottom: 6px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" th:href="@{/home}">TravelBooking</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/home}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/trips}">Available Trips</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/register}">Register</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="text-center">
+        <h1 class="display-4 fw-bold">Discover Your Next Adventure</h1>
+        <p class="lead mt-3">Explore Destinations – Book Trips – Travel the World</p>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="container my-5">
+    <h2 class="text-center fw-bold text-success mb-3">About Us</h2>
+    <p class="text-center fs-5">
+        Welcome to our travel platform!
+        WWe are committed to making travel simple, affordable, and stress-free for everyone.
+        Our platform helps you discover destinations, explore available trips, and book your journey with complete confidence.
+        With a strong focus on quality, trust, and convenience, we aim to deliver the best possible travel experience to every user.
+    </p>
+</section>
+
+<!-- Trip cards -->
+<section class="container my-5">
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card trip-card shadow">
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7">
+                <div class="card-body">
+                    <h5>Goa</h5>
+                    <p>Beaches and nightlife</p>
+                    <p class="fw-bold text-success">₹12,000</p>
+                    <a th:href="@{/bookings(destination='Goa', price=12000)}"
+                       class="btn btn-book w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card trip-card shadow">
+                <img src="https://images.unsplash.com/photo-1548013146-72479768bada">
+                <div class="card-body">
+                    <h5>Manali</h5>
+                    <p>Snow & adventure</p>
+                    <p class="fw-bold text-success">₹18,000</p>
+                    <a th:href="@{/bookings(destination='Manali', price=18000)}"
+                       class="btn btn-book w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card trip-card shadow">
+                <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff">
+                <div class="card-body">
+                    <h5>Maldives</h5>
+                    <p>Luxury island stay</p>
+                    <p class="fw-bold text-success">₹45,000</p>
+                    <a th:href="@{/bookings(destination='Maldives', price=45000)}"
+                       class="btn btn-book w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card trip-card shadow">
+                <img src="https://images.unsplash.com/photo-1500048993953-d23a436266cf">
+                <div class="card-body">
+                    <h5>Switzerland</h5>
+                    <p>Mountains & lakes</p>
+                    <p class="fw-bold text-success">₹95,000</p>
+                    <a th:href="@{/bookings(destination='Switzerland', price=95000)}"
+                       class="btn btn-book w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card trip-card shadow">
+                <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944">
+                <div class="card-body">
+                    <h5>Kerala</h5>
+                    <p>Backwaters & greenery</p>
+                    <p class="fw-bold text-success">₹15,000</p>
+                    <a th:href="@{/bookings(destination='Kerala', price=15000)}"
+                       class="btn btn-book w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card trip-card shadow">
+                <img src="https://images.unsplash.com/photo-1528701800489-20be3c7fa1a1">
+                <div class="card-body">
+                    <h5>Dubai</h5>
+                    <p>Luxury city experience</p>
+                    <p class="fw-bold text-success">₹55,000</p>
+                    <a th:href="@{/bookings(destination='Dubai', price=55000)}"
+                       class="btn btn-book w-100">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="container my-5">
+    <h2 class="text-center fw-bold text-success mb-4">Why Choose Us?</h2>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <h5>✔ Best Price Guarantee</h5>
+            <p>We make travel affordable by providing the most competitive prices in the market.</p>
+        </div>
+
+        <div class="col-md-4">
+            <h5>✔ 24/7 Customer Support</h5>
+            <p>Our expert support team is available 24/7 for assistance.</p>
+        </div>
+
+        <div class="col-md-4">
+            <h5>✔ Trusted by 10,000+ Travelers</h5>
+            <p>Secure booking, high customer satisfaction, and reliability.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-white pt-4 pb-2">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h5 class="fw-bold">📍 Office Location</h5>
+                <p>TravelBooking Pvt Ltd</p>
+                <p>Hyderabad, Telangana</p>
+                <p>India - 500001</p>
+            </div>
+
+            <div class="col-md-4 footer-links">
+                <h5 class="fw-bold">Pages</h5>
+                <a th:href="@{/home}">Home</a>
+                <a th:href="@{/trips}">Available Trips</a>
+                <a th:href="@{/about}">About Us</a>
+                <a th:href="@{/contact}">Contact Us</a>
+                <a th:href="@{/login}">Login</a>
+                <a th:href="@{/register}">Register</a>
+            </div>
+
+            <div class="col-md-4">
+                <h5 class="fw-bold">Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="border-light">
+        <p class="text-center mb-0">© 2025 TravelBooking — All Rights Reserved</p>
+    </div>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

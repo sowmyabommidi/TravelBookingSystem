@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: head"></head>
+  <body>
+    <div>
+      <h2 th:text="${trip.travelType} + ' : ' + ${trip.source} + ' -> ' + ${trip.destination}"></h2>
+      <p th:text="${trip.description}"></p>
+      <p>Departure: <span th:text="${#dates.format(trip.departureDateTime,'dd-MMM-yyyy HH:mm')}"></span></p>
+      <p>Seats available: <span th:text="${trip.seatsAvailable}"></span></p>
+      <p>Price per seat: ₹<span th:text="${trip.price}"></span></p>
+
+      <div th:if="${error}">
+        <p style="color:red" th:text="${error}"></p>
+      </div>
+
+      <form th:action="@{/book}" method="post">
+        <input type="hidden" name="tripId" th:value="${trip.id}" />
+        <label>Number of seats</label>
+        <input type="number" name="seats" min="1" max="${trip.seatsAvailable}" value="1" required />
+        <button type="submit">Book</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Travel Booking System</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --seagreen: #2eccb8;
+            --darkgreen: #1fa798;
+            --white: #ffffff;
+        }
+
+        body {
+            background: #f2f7ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--seagreen) !important;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: var(--white) !important;
+            font-weight: 600;
+        }
+
+        /* HEADER */
+        .page-header {
+            background: var(--darkgreen);
+            color: white;
+            text-align: center;
+            padding: 30px 10px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        /* CONTACT SECTIONS */
+        .contact-wrapper {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-form,
+        .contact-info {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .contact-form h2,
+        .contact-info h2 {
+            color: var(--darkgreen);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            background: var(--darkgreen);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: var(--seagreen);
+        }
+
+        iframe {
+            width: 100%;
+            height: 260px;
+            border: none;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        footer {
+            background-color: var(--darkgreen);
+        }
+
+        .footer-links a {
+            color: white;
+            display: block;
+            margin-bottom: 6px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            margin-right: 12px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" th:href="@{/}">TravelBooking</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/trips}">Available Trips</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/contact}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/register}">Register</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- CONTACT SECTION -->
+<div class="contact-wrapper">
+
+    <!-- FORM -->
+    <div class="contact-form">
+        <h2>Get in Touch</h2>
+        <form th:action="@{/contact}" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+            <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- INFO -->
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+
+        <p><strong>Address:</strong> 45, Skyline Towers, Mumbai, India</p>
+        <p><strong>Email:</strong> support@travelbooking.com</p>
+        <p><strong>Phone:</strong> +91 91234 56789</p>
+        <p><strong>Working Hours:</strong> Mon–Sat | 9:00 AM – 8:00 PM</p>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.635681358924!2d72.823457!3d19.082197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306fdf79f7%3A0xc15344ee72ff084!2sSkyline%20Towers%2C%20Mumbai!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin">
+        </iframe>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-white pt-4 pb-2">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h5 class="fw-bold">📍 Office Location</h5>
+                <p>TravelBooking Pvt Ltd</p>
+                <p>Hyderabad, Telangana</p>
+                <p>India - 500001</p>
+            </div>
+
+            <div class="col-md-4 footer-links">
+                <h5 class="fw-bold">Pages</h5>
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/trips}">Available Trips</a>
+                <a th:href="@{/about}">About Us</a>
+                <a th:href="@{/contact}">Contact Us</a>
+                <a th:href="@{/login}">Login</a>
+                <a th:href="@{/register}">Register</a>
+            </div>
+
+            <div class="col-md-4">
+                <h5 class="fw-bold">Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="border-light">
+        <p class="text-center mb-0">© 2025 TravelBooking — All Rights Reserved</p>
+    </div>
+</footer>
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

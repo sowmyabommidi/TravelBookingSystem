@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Booking System</title>
+
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAVBAR */
+header {
+  background:#0b7d6e;
+  padding:15px 40px;
+  color:white;
+}
+
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav ul {
+  display:flex;
+  list-style:none;
+}
+
+nav ul li {
+  margin-left:25px;
+}
+
+nav ul li a {
+  text-decoration:none;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+}
+
+nav ul li a:hover {
+  color:#d1fff4;
+}
+
+/* HERO SECTION */
+.hero {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:70px 40px;
+  background:#e8f9f1;
+}
+
+.hero-content {
+  width:50%;
+}
+
+.hero-content h1 {
+  font-size:48px;
+  color:#0b7d6e;
+  font-weight:700;
+}
+
+.hero-content p {
+  margin:15px 0;
+  font-size:18px;
+  color:#333;
+}
+
+.btn {
+  padding:12px 25px;
+  background:#0b7d6e;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.hero-image {
+  width:45%;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.hero-image img {
+  width:100%;
+  border-radius:15px;
+  object-fit:cover;
+}
+
+/* ABOUT US */
+.about {
+  padding:60px 40px;
+  text-align:center;
+}
+
+.about h2 {
+  font-size:36px;
+  color:#0b7d6e;
+  margin-bottom:20px;
+}
+
+.about p {
+  font-size:18px;
+  max-width:850px;
+  margin:auto;
+  color:#444;
+}
+
+/* WHY CHOOSE US */
+.choose {
+  padding:70px 40px;
+  background:#f3fffb;
+}
+
+.choose h2 {
+  text-align:center;
+  font-size:36px;
+  color:#0b7d6e;
+  margin-bottom:35px;
+}
+
+.choose-box {
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.choose-card {
+  background:white;
+  width:33%;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.choose-card h3 {
+  color:#0b7d6e;
+  margin-bottom:15px;
+}
+
+/* TRIPS */
+.trips {
+  padding:60px 40px;
+}
+
+.trips h2 {
+  text-align:center;
+  font-size:36px;
+  color:#0b7d6e;
+  margin-bottom:30px;
+}
+
+.cards {
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.card {
+  background:white;
+  width:32%;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+.card img {
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.card-content {
+  padding:20px;
+}
+
+.card-content h3 {
+  color:#0b7d6e;
+}
+
+/* FOOTER */
+footer {
+  background:#0b7d6e;
+  color:white;
+  padding:40px;
+  margin-top:60px;
+}
+
+.footer-box {
+  display:flex;
+  justify-content:space-between;
+}
+
+footer ul {
+  list-style:none;
+}
+
+footer ul li {
+  margin:8px 0;
+}
+
+footer ul li a {
+  color:white;
+  text-decoration:none;
+}
+
+.copy {
+  text-align:center;
+  margin-top:20px;
+  border-top:1px solid #d1fff4;
+  padding-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER + NAVBAR -->
+<header>
+<nav>
+  <div class="logo"><h2>TravelBook</h2></div>
+
+  <ul>
+    <li><a th:href="@{/home}">Home</a></li>
+    <li><a th:href="@{/about}">About Us</a></li>
+    <li><a th:href="@{/contact}">Contact Us</a></li>
+    <li><a th:href="@{/trips}">Available Trips</a></li>
+    <li><a th:href="@{/register}">Register</a></li>
+    <li><a th:href="@{/login}">Login</a></li>
+  </ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Explore The World With Ease</h1>
+    <p>Your trusted travel partner for unforgettable trips, best prices, and 24/7 support.</p>
+    <a th:href="@{/trips}">
+      <button class="btn">Book Your Trip</button>
+    </a>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <h2>About Us</h2>
+  <p>
+    We are a trusted travel booking platform helping travelers discover beautiful destinations worldwide.
+    We provide smooth booking, secure experience, best prices, and dedicated support.
+    Our goal is to make your journey simple, enjoyable, and memorable.
+  </p>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="choose">
+  <h2>Why Choose Us?</h2>
+
+  <div class="choose-box">
+    <div class="choose-card">
+      <h3>Price Guarantee</h3>
+      <p>We ensure the best price for every trip with transparent charges and no hidden costs.</p>
+    </div>
+
+    <div class="choose-card">
+      <h3>24/7 Customer Support</h3>
+      <p>Our support team is always available to help you during your booking and trip.</p>
+    </div>
+
+    <div class="choose-card">
+      <h3>Trusted by 1,000,000+ Travelers</h3>
+      <p>We are proud to be the first choice for travelers around the world with top ratings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRIPS -->
+<section class="trips">
+  <h2>Popular Trips</h2>
+
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+      <div class="card-content">
+        <h3>Paris</h3>
+        <p>The city of love and lights. Experience the magic.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff">
+      <div class="card-content">
+        <h3>Maldives</h3>
+        <p>Beautiful beaches and luxury resorts to relax.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad">
+      <div class="card-content">
+        <h3>New York</h3>
+        <p>Explore the vibrant city that never sleeps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-box">
+  <div>
+    <h3>Location</h3>
+    <ul>
+      <li>Hyderabad, India</li>
+      <li>Bangalore, India</li>
+      <li>Mumbai, India</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Pages</h3>
+    <ul>
+      <li><a th:href="@{/}">Home</a></li>
+      <li><a th:href="@{/about}">About Us</a></li>
+      <li><a th:href="@{/trips}">Available Trips</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<p class="copy">© 2025 TravelBook. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
